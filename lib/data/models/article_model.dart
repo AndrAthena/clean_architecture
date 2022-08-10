@@ -5,16 +5,17 @@ part 'article_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ArticleModel extends Article {
+  @override
   final SourceModel source;
 
   const ArticleModel({
     required this.source,
     required super.title,
-    required super.description,
     required super.url,
-    required super.urlToImage,
     required super.publishedAt,
-    required super.content,
+    super.description,
+    super.urlToImage,
+    super.content,
     super.author,
   }) : super(source: source);
 

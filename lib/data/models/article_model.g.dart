@@ -9,11 +9,11 @@ part of 'article_model.dart';
 ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
       source: SourceModel.fromJson(json['source'] as Map<String, dynamic>),
       title: json['title'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       url: json['url'] as String,
-      urlToImage: json['urlToImage'] as String,
+      urlToImage: json['urlToImage'] as String?,
       publishedAt: json['publishedAt'] as String,
-      content: json['content'] as String,
+      content: json['content'] as String?,
       author: json['author'] as String?,
     );
 
