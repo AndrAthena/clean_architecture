@@ -41,6 +41,8 @@ dependencies:
   equatable: ^2.0.3
   ionicons: ^0.1.2
   json_annotation: ^4.6.0
+  bloc_concurrency: ^0.2.0
+  stream_transform: ^2.0.0
 
 dev_dependencies:
   flutter_test:
