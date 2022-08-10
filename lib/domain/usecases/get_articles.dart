@@ -6,12 +6,12 @@ import '../repositories/articles_repository.dart';
 
 class GetArticlesUseCase<E>
     implements UseCase<E, List<Article>, ArticleRequestParams> {
-  final ArticlesRepository<E> repository;
+  final ArticlesRepository<E> _repository;
 
-  GetArticlesUseCase(this.repository);
+  GetArticlesUseCase(this._repository);
 
   @override
   Future<Result<E, List<Article>>> call(ArticleRequestParams? input) async {
-    return await repository.getBreakingNewsArticles(input!);
+    return await _repository.getBreakingNewsArticles(input!);
   }
 }
