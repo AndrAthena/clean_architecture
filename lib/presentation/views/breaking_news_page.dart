@@ -42,8 +42,15 @@ class BreakingNewsPage extends HookWidget {
             itemBuilder: (context, index) {
               if (index == state.articles.length) {
                 return Center(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).primaryColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Transform.scale(
+                      scale: 0.75,
+                      child: CircularProgressIndicator(
+                        color: Theme.of(context).primaryColor,
+                        strokeWidth: 2.0,
+                      ),
+                    ),
                   ),
                 );
               }

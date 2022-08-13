@@ -38,26 +38,26 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
   ) async {
     emit(state.copyWith(state: RequestState.loading));
 
-    if (state.articles.length % _pageSize > _page) _page += 1;
+    if (_page == 1 || state.articles.length / _pageSize + 1 == _page) {
+      final result = await _getArticlesUseCase(
+        ArticleRequestParams(
+          page: _page++,
+          pageSize: _pageSize,
+        ),
+      );
 
-    final result = await _getArticlesUseCase(
-      ArticleRequestParams(
-        page: _page,
-        pageSize: _pageSize,
-      ),
-    );
-
-    if (result.isSuccess) {
-      final data = result.get() as List<Article>;
-      emit(state.copyWith(
-        state: RequestState.done,
-        articles: List.of([...state.articles, ...data]),
-      ));
-    } else {
-      emit(state.copyWith(
-        state: RequestState.error,
-        error: result.get() as DioError,
-      ));
+      if (result.isSuccess) {
+        final data = result.get() as List<Article>;
+        emit(state.copyWith(
+          state: RequestState.done,
+          articles: List.of([...state.articles, ...data]),
+        ));
+      } else {
+        emit(state.copyWith(
+          state: RequestState.error,
+          error: result.get() as DioError,
+        ));
+      }
     }
   }
 }
